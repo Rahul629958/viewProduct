@@ -31,18 +31,14 @@ function Result(props) {
    setHighlight(data.Highlights);
    setDescription(data.Description);
    setTags(data.Taglist);
-  
-  //  ImgURL: ImgURL,
-  //  Title: titleName,
-  //  Highlights: highlightName,
-  //  Description: descriptionName,
-  //  Taglist: tagList
   }
   
   useEffect(()=>
   {
     fetchData();
   },[]);
+
+
 
 
   //open AI API test function
@@ -82,7 +78,7 @@ function Result(props) {
           <br/>
           <span className="productTag">Tags : </span>
           {tags.map((e) => (
-            <span className="productTagItem">{e}</span>
+            <span className="productTagItem" key={e}>{e}</span>
           ))}
           <br />
           <br />

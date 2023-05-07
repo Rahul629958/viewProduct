@@ -2,17 +2,21 @@
 const express = require("express");
 const bodyParser = require("body-parser");
 const request = require("request");
-
-
+const cors = require("cors");
 
 const app = express();
-
-
-
-
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+app.use(cors());
 
 const cheerio = require("cheerio");
 const axios = require("axios");
+
+app.post('/', (req, res) => {
+  console.log(req.body.link); // { name: 'John', age: 30 }
+  
+});
+
 
 async function performScraping() {
   // downloading the target web page
@@ -46,56 +50,23 @@ async function performScraping() {
     }
   });
 
-{/* <div class="styles_htmlText__d6xln styles_format__w0VVk color-lighter-grey fontSize-16 fontWeight-400 styles_commentBody__e5V1S"></div> */}
-//   const commentList= [];
-
-//   $(".styles_commentBody__e5V1S").each((index,element)=>{
-//     const commentVal = $(element).text();
-//     if(commentVal)
-//     {
-//         commentList.push(commentVal);
-//         console.log(commentVal);
-//     }
-  
-//   })
-
-//   console.log(commentList);
- 
-{/* <div class="styles_htmlText__d6xln styles_format__w0VVk color-lighter-grey fontSize-16 fontWeight-400 styles_commentBody__e5V1S"></div> */}
-//   trasforming the scraped data into a general object
+  //   trasforming the scraped data into a general object
   const scrapedData = {
-  ImgURL: ImgURL,
-  Title: titleName,
-  Highlights: highlightName,
-  Description: descriptionName,
-  Taglist: tagList
-  }
+    ImgURL: ImgURL,
+    Title: titleName,
+    Highlights: highlightName,
+    Description: descriptionName,
+    Taglist: tagList,
+  };
 
-//   converting the scraped data object to JSON
-// console.log(scrapedData);
-// const jsonVal=JSON.stringify(scrapedData);
-
-//   const scrapedDataJSON = JSON.stringify(scrapedData)
-app.get("/api/data", function(req,res)
-{
-  res.json(scrapedData);
-})
-//   storing scrapedDataJSON in a database via an API call...
+  app.get("/api/data", function (req, res) {
+    res.json(scrapedData);
+  });
+  //   storing scrapedDataJSON in a database via an API call...
 }
 
 performScraping();
 
-
-
-
-app.get("/", function(req,res)
-{
-    res.sendFile(__dirname + "/src/index.js");
-});
-
-
-
-app.listen(8000,function(req,res)
-{
+app.listen(8000, function (req, res) {
   console.log("Server is running on port 8000");
-})
+});
