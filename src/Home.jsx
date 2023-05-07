@@ -8,7 +8,8 @@ function Home(props) {
   var handleSubmit= (e)=>
   {
     e.preventDefault();
-    const data = {link : link};
+    
+  if(link){  const data = {link : link};
 fetch('http://localhost:8000/', {
   method: 'POST',
   headers: {
@@ -20,7 +21,7 @@ fetch('http://localhost:8000/', {
 // .then(data => console.log(data))
 // .catch(error => console.error(error));
 
-props.func(false);
+props.func(false);} else {alert("Enter correct product link.")}
   }
 
 
@@ -36,7 +37,7 @@ props.func(false);
 
         <span className = "inputCheck"> View suggestion</span>
         <br />
-        <button className="btn btn-info" type="submit"> view Details</button>
+        <button className="btn btn-info" type="submit" onClick={handleSubmit}> view Details</button>
         </form>
 
       </div>

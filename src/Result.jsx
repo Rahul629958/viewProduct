@@ -30,12 +30,14 @@ function Result(props) {
    setImg(data.ImgURL);
    setHighlight(data.Highlights);
    setDescription(data.Description);
-   setTags(data.Taglist);
+  data.Taglist&& setTags(data.Taglist);
   }
+  
   
   useEffect(()=>
   {
-    fetchData();
+    // fetchData();
+    setTimeout(fetchData, 1000);
   },[]);
 
 
@@ -71,7 +73,8 @@ function Result(props) {
       <NavBar func={props.func} />
       <div className="resultBox">
         <div className="container productBox">
-          <img className="productIcon" src={imgURL} />
+          <img className="productIcon" src={imgURL}  />
+          {/* <video width={"15%"} loop={true}> <source src={imgURL} type="video/mp4" /></video>  */}
           <span className="productTitle">{title}</span>
           <p className="productHighlight">{highlight}</p>
           <p className="productDescription">{description}</p>
@@ -89,6 +92,7 @@ function Result(props) {
           ))} */}
         </div>
       </div>
+   
     </React.StrictMode>
   );
 }

@@ -10,6 +10,7 @@ import Home from "./Home";
     function setValues(value)
     {
         setHome(value);
+        // window.location.reload();
     }
     return (
         <React.StrictMode>
