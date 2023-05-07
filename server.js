@@ -3,8 +3,11 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const request = require("request");
 
+
+
 const app = express();
-app.use(bodyParser.urlencoded({extended: true}));
+
+
 
 
 
@@ -16,7 +19,7 @@ async function performScraping() {
   // by performing an HTTP GET request in Axios
   const axiosResponse = await axios.request({
     method: "GET",
-    url: "https://www.producthunt.com/posts/fembase",
+    url: "https://www.producthunt.com/posts/ai2006",
     headers: {
       "User-Agent":
         "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/108.0.0.0 Safari/537.36",
@@ -69,9 +72,14 @@ async function performScraping() {
   }
 
 //   converting the scraped data object to JSON
-console.log(scrapedData);
-//   const scrapedDataJSON = JSON.stringify(scrapedData)
+// console.log(scrapedData);
+// const jsonVal=JSON.stringify(scrapedData);
 
+//   const scrapedDataJSON = JSON.stringify(scrapedData)
+app.get("/api/data", function(req,res)
+{
+  res.json(scrapedData);
+})
 //   storing scrapedDataJSON in a database via an API call...
 }
 
@@ -82,11 +90,12 @@ performScraping();
 
 app.get("/", function(req,res)
 {
-    res.sendFile(__dirname + "/");
+    res.sendFile(__dirname + "/src/index.js");
 });
 
 
-app.listen(3000, function()
+
+app.listen(8000,function(req,res)
 {
-    console.log("Server started on port 3000 ");
-});
+  console.log("Server is running on port 8000");
+})

@@ -6,7 +6,7 @@ body{
 .homebox
 {
     width: fit-content;
-    margin: 3% auto 10% auto;
+    margin: 5% auto 10% auto;
     background-color: #A6D0DD;
     border-radius: 1rem;
 
@@ -46,6 +46,7 @@ body{
   margin-left: 5%;
 }
 
+
 .iconText
 {
   font-size: 500%;
@@ -54,10 +55,11 @@ body{
 }
 .resultBox{
 margin-top: 10%;
-background-color: antiquewhite;
+background-color: #cae9f2;
 padding-bottom: 30%;
 border-top-left-radius: 3rem;
 border-top-right-radius: 3rem;
+
 }
 
 .productBox
@@ -67,7 +69,12 @@ border-top-right-radius: 3rem;
 }
 .productIcon
 {
-  width:20%;
+  width:15%;
+  /* padding-top: 10px;
+  padding-right: 10px; */
+  margin-top: 10px;
+  margin-right: 10px;
+  border-radius: 2rem;
 }
 .productTitle
 {
@@ -92,7 +99,8 @@ border-top-right-radius: 3rem;
 {
   border-radius: 1rem;
   background-color:cadetblue;
-  padding:2px 5px 2px 5px;
+  padding:2px 15px 2px 15px;
+  margin-left: 10px;
 }
 .comment{
   font-size: 150%;
