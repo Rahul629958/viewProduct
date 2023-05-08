@@ -121,8 +121,10 @@ async function performScraping(link) {
   // initializing the data structures
   // that will contain the scraped data
 
-  var ImgURL = $(".styles_mediaThumbnail__LDCQN").attr("src");
+  var imgURL = $(".styles_mediaThumbnail__LDCQN").attr("src");
+  var posterURL = $(".styles_mediaThumbnail__LDCQN").attr("poster");
   // var VidURL= $(".styles_mediaThumbnail__LDCQN").find("source").find(attr()).attr("src");
+  var ImgURL= imgURL?imgURL:posterURL;
   var titleName = $("h1").text();
   var highlightName = $("h2").text();
   var descriptionName = $(
@@ -137,7 +139,7 @@ async function performScraping(link) {
     }
   });
 
-
+{/* <video class="styles_mediaThumbnail__LDCQN styles_video__td2wc" aria-label="ChartGPT" width="72" height="72" poster="https://ph-files.imgix.net/2a39556e-d741-46b9-be2e-df154bafe142.gif?auto=compress&codec=mozjpeg&cs=strip&fm=webp&w=72&h=72&fit=max&frame=1&dpr=2&bg=0fff" muted loop autoplay disableremoteplayback disablepictureinpicture playsinline preload="none">…</video> */}
   scrapedData = {
     ImgURL: ImgURL,
     Title: titleName,
@@ -163,6 +165,7 @@ app.post("/", async (req, res) => {
 });
 
 app.get("/api/data", function (req, res) {
+  console.log(scrapedData);
   res.json(scrapedData);
 });
 

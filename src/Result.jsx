@@ -73,7 +73,7 @@ function Result(props) {
       <NavBar func={props.func} />
       <div className="resultBox">
         <div className="container productBox">
-          <img className="productIcon" src={imgURL}  />:
+          <img className="productIcon" src={imgURL}  />
            {/*<video class="productIcon"  controls> <source src={vidURL} /></video>} */}
           {/* <img className="productIcon" src={imgURL}  /> */}
           <span className="productTitle">{title}</span>
