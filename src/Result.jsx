@@ -20,8 +20,8 @@ function Result(props) {
   const [imgURL,setImg]= useState("https://i.gifer.com/ZZ5H.gif");
   const [highlight,setHighlight]= useState("");
   const [description,setDescription]= useState("");
-  const [tags,setTags]= useState([". . ."]);
-
+  const [tags,setTags]= useState([". . . ."]);
+  const [link,setLink]= useState("");
  
   const fetchData= async()=>
   {
@@ -31,6 +31,7 @@ function Result(props) {
    setHighlight(data.Highlights);
    setDescription(data.Description);
   data.Taglist&& setTags(data.Taglist);
+  setLink(data.link);
   }
   
   
@@ -54,20 +55,6 @@ function Result(props) {
 
   // console.log(response);
 
-
-  //example test case of a product.
-  // const title = "Currl";
-  // const imgURL =
-  //   "https://ph-files.imgix.net/127a103f-c29a-472a-a32d-a53b1fb6e511.png?auto=compress&codec=mozjpeg&cs=strip&auto=format&w=72&h=72&fit=crop&bg=0fff&dpr=1";
-  // const description =
-  //   "Currl is a free text-based social bookmarking website. You can collect the links you love from around the web, you can also store them privately or share them publicly with your followers.";
-  // const highlight = "A free text-based social bookmarking website";
-  // const tags = ["Social Media", "bookmarking"];
-  // const comments = ["first comment", "second comment"];
-
-  // const titleRating, highlightRating,descriptionRating,tagsRating;
-  // const titleSuggestion,highlightSuggestion, descriptionSuggestion, tagsSuggesting;
-{/* <video class="productIcon"   muted loop autoplay disableremoteplayback disablepictureinpicture playsinline preload="none"> <source src={vidURL} type="video/webm" /></video> */}
   return (
     <React.StrictMode>
       <NavBar func={props.func} />
@@ -76,7 +63,7 @@ function Result(props) {
           <img className="productIcon" src={imgURL}  />
            {/*<video class="productIcon"  controls> <source src={vidURL} /></video>} */}
           {/* <img className="productIcon" src={imgURL}  /> */}
-          <span className="productTitle">{title}</span>
+          <span className="productTitle" onClick={(e)=>{window.open(link, '_blank', 'width=800,height=600')}}>{title}</span>
           <p className="productHighlight">{highlight}</p>
           <p className="productDescription">{description}</p>
           <br/>
@@ -87,13 +74,14 @@ function Result(props) {
           <br />
           <br />
           <hr />
+          <a href={link} target="_blank" className="knowMoreLink">Know more about this product...</a>
           {/* <p className="comment"> Comments : </p>
           {comments.map((e) => (
             <p className="commentItem">- {e}</p>
           ))} */}
         </div>
       </div>
-   
+  
     </React.StrictMode>
   );
 }

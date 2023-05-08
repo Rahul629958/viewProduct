@@ -1,93 +1,3 @@
-// // index.js
-// const express = require("express");
-// const bodyParser = require("body-parser");
-// const request = require("request");
-// const cors = require("cors");
-
-
-// const app = express();
-// app.use(express.json());
-// app.use(express.urlencoded({ extended: true }));
-// app.use(cors());
-
-// const cheerio = require("cheerio");
-// const axios = require("axios");
-
-// async function performScraping(link) {
-//   // downloading the target web page
-//   // by performing an HTTP GET request in Axios
-//   console.log(link);
-//   var axiosResponse = await axios.request({
-//     method: "GET",
-//     // url: "https://www.producthunt.com/posts/ai2006",
-//     // url: "https://www.producthunt.com/posts/ai2006",
-//     url: link,
-
-//     headers: {
-//       "User-Agent":
-//         "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/108.0.0.0 Safari/537.36",
-//     },
-//   });
-
-//   // parsing the HTML source of the target web page with Cheerio
-
-  // var $ =  cheerio.load(axiosResponse.data);
-  // // initializing the data structures
-  // // that will contain the scraped data
-
-  // var ImgURL = $(".styles_mediaThumbnail__LDCQN").attr("src");
-  // var titleName = $("h1").text();
-  // var highlightName = $("h2").text();
-  // var descriptionName = $(
-  //   ".styles_htmlText__d6xln, .color-darker-grey fontSize-16 fontWeight-400"
-  // ).text();
-
-  // var tagList = [];
-  // $(".styles_reset__opz7w").each((index, element) => {
-  //   var tagVal = $(element).find("span").text();
-  //   if (tagVal) {
-  //     tagList.push(tagVal);
-  //   }
-  // });
-
-  // //   trasforming the scraped data into a general object
-  // var scrapedData = {
-  //   ImgURL: ImgURL,
-  //   Title: titleName,
-  //   Highlights: highlightName,
-  //   Description: descriptionName,
-  //   Taglist: tagList,
-  // };
-
-
-
-//   app.get("/api/data", function (req, res) {
-//     res.json(scrapedData);
-//   });
-//   //   storing scrapedDataJSON in a database via an API call...
-// }
-
-// // performScraping();
-
-// app.post("/", (req, res) => {
-//   // console.log(req.body.link); // { name: 'John', age: 30 }
-//   // link = req.body.link;
-//   performScraping(req.body.link);
-// });
-
-// app.listen(8000, function (req, res) {
-//   console.log("Server is running on port 8000");
-// });
-
-
-
-
-
-
-
-
-//doing some googling
-
 // index.js
 const express = require("express");
 const bodyParser = require("body-parser");
@@ -101,30 +11,27 @@ app.use(cors());
 
 const cheerio = require("cheerio");
 const axios = require("axios");
-// const { attr } = require("cheerio/lib/api/attributes");
 
 let scrapedData = {}; // define scrapedData outside of performScraping()
 
 async function performScraping(link) {
-  
-    console.log(link);
-    const axiosResponse = await axios.request({
-      method: "GET",
-      url: link,
-      headers: {
-        "User-Agent":
-          "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/108.0.0.0 Safari/537.36",
-      },
-    });
+  const axiosResponse = await axios.request({
+    method: "GET",
+    url: link,
+    headers: {
+      "User-Agent":
+        "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/108.0.0.0 Safari/537.36",
+    },
+  });
 
-    var $ =  cheerio.load(axiosResponse.data);
+  var $ = cheerio.load(axiosResponse.data);
   // initializing the data structures
   // that will contain the scraped data
 
   var imgURL = $(".styles_mediaThumbnail__LDCQN").attr("src");
   var posterURL = $(".styles_mediaThumbnail__LDCQN").attr("poster");
-  // var VidURL= $(".styles_mediaThumbnail__LDCQN").find("source").find(attr()).attr("src");
-  var ImgURL= imgURL?imgURL:posterURL;
+
+  var ImgURL = imgURL ? imgURL : posterURL;
   var titleName = $("h1").text();
   var highlightName = $("h2").text();
   var descriptionName = $(
@@ -139,20 +46,28 @@ async function performScraping(link) {
     }
   });
 
-{/* <video class="styles_mediaThumbnail__LDCQN styles_video__td2wc" aria-label="ChartGPT" width="72" height="72" poster="https://ph-files.imgix.net/2a39556e-d741-46b9-be2e-df154bafe142.gif?auto=compress&codec=mozjpeg&cs=strip&fm=webp&w=72&h=72&fit=max&frame=1&dpr=2&bg=0fff" muted loop autoplay disableremoteplayback disablepictureinpicture playsinline preload="none">…</video> */}
+  // var comments = [];
+  // $("#comments").find(".styles_htmlText_d6xln").each((index,element)=>
+  // {
+  //   var comVal = $(element).text();
+  //   if(comVal)
+  //   {
+  //     comments.push(comVal);
+  //   }
+  // })
+
   scrapedData = {
+    link: link,
     ImgURL: ImgURL,
     Title: titleName,
     Highlights: highlightName,
     Description: descriptionName,
     Taglist: tagList,
+  
   };
 
   return scrapedData;
-
 }
-
-
 
 app.post("/", async (req, res) => {
   try {
@@ -168,9 +83,6 @@ app.get("/api/data", function (req, res) {
   console.log(scrapedData);
   res.json(scrapedData);
 });
-
-
-
 
 app.listen(8000, function (req, res) {
   console.log("Server is running on port 8000");

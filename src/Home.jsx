@@ -17,9 +17,7 @@ fetch('http://localhost:8000/', {
   },
   body: JSON.stringify(data)
 })
-// .then(response => response.json())
-// .then(data => console.log(data))
-// .catch(error => console.error(error));
+
 
 props.func(false);} else {alert("Enter correct product link.")}
   }
