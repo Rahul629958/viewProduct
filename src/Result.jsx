@@ -16,11 +16,11 @@ import axios from "axios";
 //result function started
 function Result(props) {
 
-  const [title,setTitle]= useState("");
-  const [imgURL,setImg]= useState("");
+  const [title,setTitle]= useState("Please wait...");
+  const [imgURL,setImg]= useState("https://i.gifer.com/ZZ5H.gif");
   const [highlight,setHighlight]= useState("");
   const [description,setDescription]= useState("");
-  const [tags,setTags]= useState([]);
+  const [tags,setTags]= useState([". . ."]);
 
  
   const fetchData= async()=>
