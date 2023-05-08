@@ -67,14 +67,15 @@ function Result(props) {
 
   // const titleRating, highlightRating,descriptionRating,tagsRating;
   // const titleSuggestion,highlightSuggestion, descriptionSuggestion, tagsSuggesting;
-
+{/* <video class="productIcon"   muted loop autoplay disableremoteplayback disablepictureinpicture playsinline preload="none"> <source src={vidURL} type="video/webm" /></video> */}
   return (
     <React.StrictMode>
       <NavBar func={props.func} />
       <div className="resultBox">
         <div className="container productBox">
-          <img className="productIcon" src={imgURL}  />
-          {/* <video width={"15%"} loop={true}> <source src={imgURL} type="video/mp4" /></video>  */}
+          <img className="productIcon" src={imgURL}  />:
+           {/*<video class="productIcon"  controls> <source src={vidURL} /></video>} */}
+          {/* <img className="productIcon" src={imgURL}  /> */}
           <span className="productTitle">{title}</span>
           <p className="productHighlight">{highlight}</p>
           <p className="productDescription">{description}</p>
@@ -98,3 +99,5 @@ function Result(props) {
 }
 
 export default Result;
+
+

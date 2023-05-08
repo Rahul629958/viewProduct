@@ -21,7 +21,7 @@
   },
   "scripts": {
     "start": "concurrently \"npm run server\" \"npm run client\"",
-    "server": "node server.js",
+    "server": "node server.js --ignore client",
     "client": " react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",

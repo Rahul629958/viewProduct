@@ -101,6 +101,7 @@ app.use(cors());
 
 const cheerio = require("cheerio");
 const axios = require("axios");
+// const { attr } = require("cheerio/lib/api/attributes");
 
 let scrapedData = {}; // define scrapedData outside of performScraping()
 
@@ -121,6 +122,7 @@ async function performScraping(link) {
   // that will contain the scraped data
 
   var ImgURL = $(".styles_mediaThumbnail__LDCQN").attr("src");
+  // var VidURL= $(".styles_mediaThumbnail__LDCQN").find("source").find(attr()).attr("src");
   var titleName = $("h1").text();
   var highlightName = $("h2").text();
   var descriptionName = $(
@@ -135,7 +137,7 @@ async function performScraping(link) {
     }
   });
 
-  //   trasforming the scraped data into a general object
+
   scrapedData = {
     ImgURL: ImgURL,
     Title: titleName,
