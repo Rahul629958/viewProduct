@@ -9,7 +9,7 @@ function Home(props) {
   {
     e.preventDefault();
     
-  if(link){  const data = {link : link};
+  if(link.startsWith("https://www.producthunt.com/posts/")){  const data = {link : link};
 fetch('http://localhost:8000/', {
   method: 'POST',
   headers: {
@@ -19,7 +19,7 @@ fetch('http://localhost:8000/', {
 })
 
 
-props.func(false);} else {alert("Enter correct product link.")}
+props.func(false);} else {setLink(""); alert("Enter correct product link.")}
   }
 
 
